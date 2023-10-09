@@ -6,7 +6,7 @@ import prismadb from '@/lib/prismadb';
 export default async function SetupLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   const { userId } = auth();
 
@@ -17,16 +17,12 @@ export default async function SetupLayout({
   const store = await prismadb.store.findFirst({
     where: {
       userId,
-    }
+    },
   });
 
   if (store) {
     redirect(`/${store.id}`);
-  };
+  }
 
-  return (
-    <>
-      {children}
-    </>
-  );
-};
+  return <>{children}</>;
+}
